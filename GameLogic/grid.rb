@@ -6,10 +6,10 @@ class Grid
     # Creates and initializes a n*n array (play area) 
     def initialize(grid_size)
         @game_state = {invalidmove: 0, victory: 1, draw: 2, continue: 3}
-        grid_size = grid_size < 3 ? 3 : grid_size
-        @play_area = Array.new(grid_size, Array.new(grid_size))
-        @area_size = grid_size ** 2
-        @turn = 1
+        @grid_size = grid_size < 3 ? 3 : grid_size
+        @play_area = Array.new(@grid_size, Array.new(@grid_size))
+        @area_size = @grid_size ** 2
+        @turn = 0
     end
 
     def get_play_symbols
@@ -18,9 +18,9 @@ class Grid
 
     def make_move(player, position)
         row, col = position[:row], position[:col]
-        unless play_area[row][col].nil?
-            turn += 1
+        if row < grid_size && col < grid_size && rowplay_area[row][col].nil?
             play_area[row][col] = PLAY_SYMBOLS[player]
+            turn += 1
 
             if Umpire.game_won?(play_area, PLAY_SYMBOLS[player])
                 game_state[:victory]                
@@ -36,6 +36,6 @@ class Grid
 
     private
     PLAY_SYMBOLS = { player_1: :x, player_2: :o }
-    attr_reader :area_size
+    attr_reader :area_size, :grid_size
     attr_writer :turn
 end
