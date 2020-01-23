@@ -1,6 +1,7 @@
 require_relative 'GameLogic/tictactoe'
 
 grid_size = ARGV[0].to_i
+ARGV.clear
 puts "Welcome to Tic-Tac-Toe!"
 
 unless grid_size > 0
