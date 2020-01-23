@@ -1,9 +1,8 @@
 class Player
 
-    attr_reader :name, :symbol
+    attr_reader :id
 
-    def initialize(name, symbol)
-        @name = name
-        @symbol = symbol
+    def initialize(id)
+        @id = id
     end
 end

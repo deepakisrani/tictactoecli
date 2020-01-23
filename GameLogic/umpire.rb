@@ -1,19 +1,19 @@
 module Umpire
-    def game_won?(play_area, last_sym)
+    def self.game_won?(play_area, last_sym)
         rows_won?(play_area, last_sym) || cols_won?(play_area, last_sym) || diagonals_won?(play_area, last_sym)
     end
 
     private
 
-    def win_condition? (elements, last_sym)
+    def self.win_condition? (elements, last_sym)
         elements.all? {|ele| ele == last_sym}
     end
 
-    def rows_won?(play_area, last_sym)
+    def self.rows_won?(play_area, last_sym)
         play_area.any? { |row| win_condition?(row, last_sym) }
     end
 
-    def cols_won?(play_area, last_sym)
+    def self.cols_won?(play_area, last_sym)
         grid_len = play_area.length
         win_condition = false
 
@@ -25,7 +25,7 @@ module Umpire
         win_condition
     end
 
-    def diagonals_won?(play_area, last_sym)
+    def self.diagonals_won?(play_area, last_sym)
         grid_len = play_area.length
         diagonal_one, diagonal_two = [], []
         
